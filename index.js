@@ -1,5 +1,8 @@
 import express from 'express';
+import config from './src/config/environment.js';
 
 const app = express();
 
-app.listen(4000, () => console.log(`Server working on port: ${process.env.PORT ?? 3000}`));
+const PORT = config.PORT;
+
+app.listen(4000, () => console.log(`Server working on port: ${PORT}`));
