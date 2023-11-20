@@ -11,3 +11,29 @@ CREATE TABLE
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at DATE
     );
+
+CREATE TABLE
+    productos (
+        id SERIAL PRIMARY KEY,
+        nombre VARCHAR(100),
+        descripcion VARCHAR(256),
+        precio NUMERIC,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATE
+    )
+
+INSERT INTO
+    productos (nombre, descripcion, precio)
+VALUES (
+        'Producto 1',
+        'Descripcion producto 1',
+        200
+    ), (
+        'Producto 2',
+        'Descripcion producto 2',
+        300
+    ), (
+        'Producto 3',
+        'Descripcion producto 3',
+        560
+    );
