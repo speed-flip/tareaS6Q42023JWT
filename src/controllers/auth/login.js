@@ -1,4 +1,5 @@
 import db from '../../database/conection.js';
+import generateJWT from '../../utils/createJWT.js';
 
 
 export async function login(req, res) {
@@ -7,7 +8,7 @@ export async function login(req, res) {
     req.body.password,
   ];
 
-  const sql = `SELECT nombre, username, email, is_active FROM usuarios WHERE username = $1`;
+  const sql = `SELECT id, nombre, username, email, is_active FROM usuarios WHERE username = $1`;
 
   try {
     const result = await db.query(sql, params);
@@ -18,6 +19,11 @@ export async function login(req, res) {
       });
     } else {
       // TODO: generar el token y validar password
+      const token = generateJWT(result[0]);
+      res.json({
+        msg: 'Inicio de sesión exitoso',
+        token,
+      });
     }
 
   } catch (error) {
